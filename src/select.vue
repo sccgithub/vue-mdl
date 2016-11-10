@@ -18,8 +18,8 @@
 </style>
 
 <template lang="jade">
-.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select(v-el:textfield)
-  input.mdl-textfield__input(v-bind:id.once='id', v-el:input, v-model='name', type='text', readonly='', tabindex='-1')
+.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select(ref="textfield")
+  input.mdl-textfield__input(v-bind:id.once='id', ref="input", v-model='name', type='text', readonly='', tabindex='-1')
   label(v-bind:for.once='id')
     i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
   label.mdl-textfield__label(v-bind:for.once='id') {{label}}
@@ -82,7 +82,7 @@ export default {
       required: true
     }
   },
-  ready () {
+  mounted () {
     componentHandler.upgradeElements(this.$el)
     this.setName()
   },

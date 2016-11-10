@@ -22,7 +22,7 @@ a.title-link
 </style>
 
 <template lang="jade">
-a.title-link(v-link='link', :id.once='id', :class='{"title-link--big": big}')
+router-link.title-link(:to='link', :id.once='id', :class='{"title-link--big": big}')
   h2(v-if='big')
     slot
   h3(v-else)
@@ -44,7 +44,7 @@ export default {
       return '/' + this.id
     }
   },
-  ready () {
+  mounted () {
     this.id = _.kebabCase(this.$el.text)
   }
 }

@@ -6,7 +6,7 @@
   title-link Radio Buttons
   .section__content
     p The radio button supports the
-      a(v-link.literal='/ripple-effect')  ripple effect
+      router-link(to='/ripple-effect')  ripple effect
     .flex.start.wrap
       mdl-radio(:checked.sync='checked', value='option 1') Option 1
     .flex.start.wrap
@@ -23,9 +23,9 @@
         p= '<mdl-radio :checked.sync="check" value="option 3">Option 3</mdl-radio>'
         p= '<mdl-radio :checked.sync="check" value="option 4" disabled>Option 4</mdl-radio>'
 
-    p You can pass an 
+    p You can pass an
       code id
-      |  and a 
+      |  and a
       code name
       |  to the component to access through the form element
     pre
@@ -43,7 +43,7 @@
         tr
           td.mdl-data-table__cell--non-numeric
             code disabled
-          td.mdl-data-table__cell--non-numeric Disables the radio button. Adds the 
+          td.mdl-data-table__cell--non-numeric Disables the radio button. Adds the
             code is-disabled
             |  class to the button
           td.mdl-data-table__cell--non-numeric

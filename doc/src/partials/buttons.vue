@@ -5,8 +5,8 @@
 .section
   title-link Buttons
   .section__content
-    p The button component allows to easily toggle classes. It supports the 
-      a(v-link.literal='/ripple-effect')
+    p The button component allows to easily toggle classes. It supports the
+      router-link(to='/ripple-effect')
         code ripple-effect
     .flex.start.wrap
       mdl-button.space Button
@@ -31,14 +31,14 @@
         i.material-icons(v-if='iconText') {{iconText}}
         span(v-else) {{text}}
     .flex.center.wrap
-      mdl-checkbox.reset-width.space(:checked.sync='colored') Colored
-      mdl-checkbox.reset-width.space(:checked.sync='raised') Raised
-      mdl-checkbox.reset-width.space(:checked.sync='disabled') Disabled
-      mdl-checkbox.reset-width.space(:checked.sync='icon') Icon
-      mdl-checkbox.reset-width.space(:checked.sync='accent') Accent
-      mdl-checkbox.reset-width.space(:checked.sync='primary') Primary
-      mdl-checkbox.reset-width.space(:checked.sync='miniFab') Mini Fab
-      mdl-checkbox.reset-width.space(:checked.sync='fab') Fab
+      mdl-checkbox.reset-width.space(v-on:mdlchange='colored = $event' v-bind:checked="disabled") Colored
+      mdl-checkbox.reset-width.space(v-on:mdlchange='raised = $event' v-bind:checked="disabled") Raised
+      mdl-checkbox.reset-width.space(v-on:mdlchange='disabled' v-bind:checked="disabled") Disabled
+      mdl-checkbox.reset-width.space(v-on:mdlchange='icon' v-bind:checked="disabled") Icon
+      mdl-checkbox.reset-width.space(v-on:mdlchange='accent' v-bind:checked="disabled") Accent
+      mdl-checkbox.reset-width.space(v-on:mdlchange='primary' v-bind:checked="disabled") Primary
+      mdl-checkbox.reset-width.space(v-on:mdlchange='miniFab' v-bind:checked="disabled") Mini Fab
+      mdl-checkbox.reset-width.space(v-on:mdlchange='fab' v-bind:checked="disabled") Fab
     .flex.start.wrap
       mdl-textfield.space(:value.sync='text', label='Text', floating-label)
       mdl-textfield.space(:value.sync='iconText', label='Icon', floating-label)
@@ -48,11 +48,11 @@
 
     h5 Link buttons
     p Sometimes you might want to display a link as a button. In order to do this,
-    |  you can use the 
+    |  you can use the
     code mdl-anchor-button
-    |  element. It works exactly as the button does but uses an  
+    |  element. It works exactly as the button does but uses an
     code a
-    |  html link instead of a 
+    |  html link instead of a
     code button
     | .
     .flex.start.wrap
@@ -72,7 +72,7 @@
         tr
           td.mdl-data-table__cell--non-numeric
             code disabled
-          td.mdl-data-table__cell--non-numeric Disables the button. Adds the 
+          td.mdl-data-table__cell--non-numeric Disables the button. Adds the
             code is-disabled
             |  class to the button
           td.mdl-data-table__cell--non-numeric
@@ -81,7 +81,7 @@
             code raised
           td.mdl-data-table__cell--non-numeric Applies
             i  raised
-            |  display effect with 
+            |  display effect with
             code mdl-button--raised
             |  class
           td.mdl-data-table__cell--non-numeric Mutually exclusive with fab, mini-fab, and icon
@@ -90,7 +90,7 @@
             code fab
           td.mdl-data-table__cell--non-numeric Applies
             i  fab
-            |  (circular) display effect with 
+            |  (circular) display effect with
             code mdl-button--fab
             |  class
           td.mdl-data-table__cell--non-numeric Mutually exclusive with raised, mini-fab, and icon
@@ -99,7 +99,7 @@
             code mini-fab
           td.mdl-data-table__cell--non-numeric Applies
             i  mini-fab
-            |  (small fab circular) display effect with 
+            |  (small fab circular) display effect with
             code mdl-button--mini-fab
             |  class
           td.mdl-data-table__cell--non-numeric Mutually exclusive with raised, fab, and icon
@@ -108,7 +108,7 @@
             code icon
           td.mdl-data-table__cell--non-numeric Applies
             i  icon
-            |  (small plain circular) display effect with 
+            |  (small plain circular) display effect with
             code mdl-button--icon
             |  class
           td.mdl-data-table__cell--non-numeric Mutually exclusive with raised, fab and mini-fab
@@ -117,7 +117,7 @@
             code colored
           td.mdl-data-table__cell--non-numeric Applies
             i  colored
-            |  display effect with 
+            |  display effect with
             code mdl-button--colored
             |  class
           td.mdl-data-table__cell--non-numeric
@@ -126,7 +126,7 @@
             code primary
           td.mdl-data-table__cell--non-numeric Applies
             i  primary
-            |  color display effect with 
+            |  color display effect with
             code mdl-button--primary
             |  class
           td.mdl-data-table__cell--non-numeric
@@ -135,7 +135,7 @@
             code accent
           td.mdl-data-table__cell--non-numeric Applies
             i  accent
-            |  color display effect with 
+            |  color display effect with
             code mdl-button--accent
             |  class
           td.mdl-data-table__cell--non-numeric

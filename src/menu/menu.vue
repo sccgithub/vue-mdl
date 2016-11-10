@@ -1,12 +1,18 @@
 <template lang="jade">
-ul.mdl-menu.mdl-js-menu(v-bind:for.once='for')
+ul.mdl-menu.mdl-js-menu(v-bind:for.once='forMsg')
   slot
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      forMsg: ''
+    }
+  },
   props: ['for'],
-  ready () {
+  mounted () {
+    this.forMsg = this.for
     componentHandler.upgradeElement(this.$el, 'MaterialMenu')
   }
   // beforeDestroy () {

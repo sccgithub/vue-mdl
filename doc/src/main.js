@@ -18,35 +18,37 @@ Vue.use(VueRouter)
 
 Vue.component('title-link', require('./utils/title-link.vue'))
 Vue.directive('hljs', require('./utils/hljs').default)
+Vue.filter('json', function (val) {
+  return val
+})
 Vue.mixin({
-  ready () {
+  mounted () {
     hljs.initHighlighting.called = false
     hljs.initHighlighting()
-    document.querySelector('#app main').scrollTop = 0
+    document.querySelector('main').scrollTop = 0
   }
 })
-
-let routerMap = {}
+let routerMap = []
 context.keys().forEach(function (comp) {
   let name = path.basename(comp, '.vue')
   Vue.component(name, context(comp))
-  routerMap[`/${name}`] = {
+  routerMap.push({
+    path: `/${name}`,
     component: context(comp)
-  }
+  })
 })
-
-let router = new VueRouter({
+const router = new VueRouter({
+  // mode: 'history',
+  base: __dirname,
+  routes: routerMap
 })
-router.map(routerMap)
-
-router.redirect({
-  '/': '/installation'
-})
-
 Vue.config.debug = process.env.NODE_ENV !== 'production'
-router.start(VmdlDoc, '#app')
 
 hljs.registerLanguage('css', require('highlight.js/lib/languages/css'))
-hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
 
+new Vue({
+  router,
+  render: h => h(VmdlDoc)
+}).$mount('#app')

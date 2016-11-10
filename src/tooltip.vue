@@ -1,5 +1,5 @@
 <template lang="jade">
-.mdl-tooltip(v-bind:for='for' v-bind:class='{"mdl-tooltip--large": large}')
+.mdl-tooltip(v-bind:for='forMsg' v-bind:class='{"mdl-tooltip--large": large}')
   slot
 </template>
 
@@ -7,6 +7,11 @@
 import propFill from './mixins/prop-fill'
 
 export default {
+  data () {
+    return {
+      forMsg: ''
+    }
+  },
   props: {
     for: {
       required: true,
@@ -16,7 +21,8 @@ export default {
       fill: true
     }
   },
-  ready () {
+  mounted () {
+    this.forMsg = this.for
     componentHandler.upgradeElement(this.$el, 'MaterialTooltip')
   },
   mixins: [propFill]

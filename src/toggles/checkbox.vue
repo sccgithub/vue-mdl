@@ -1,6 +1,6 @@
 <template lang="jade">
-label.mdl-checkbox.mdl-js-checkbox(v-bind:for.once='id' v-bind:class='{ "is-disabled": disabled, "is-checked": isChecked }')
-  input.mdl-checkbox__input(v-bind:value='value' type='checkbox' v-bind:id.once='id' v-model='checked' v-bind:disabled='disabled')
+label.mdl-checkbox.mdl-js-checkbox(v-bind:for.once='id' v-bind:class='{ "is-disabled": disabled}')
+  input.mdl-checkbox__input(ref="input" type='checkbox' v-model="checkValue" v-bind:id.once='id'  v-bind:disabled='disabled' v-bind:value="value")
   span.mdl-checkbox__label
     slot
 </template>
@@ -8,8 +8,10 @@ label.mdl-checkbox.mdl-js-checkbox(v-bind:for.once='id' v-bind:class='{ "is-disa
 <script>
 import common from '../mixins/toggle'
 export default {
-  ready () {
-    componentHandler.upgradeElements(this.$el)
+  mounted () {
+    if (window.componentHandler) {
+      componentHandler.upgradeElements(this.$el)
+    }
   },
   mixins: [common]
 }

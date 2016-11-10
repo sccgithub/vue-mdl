@@ -8,7 +8,7 @@
     p The dialog component allows for verification of user actions, simple data input, and alerts to provide extra information to users. To display dialogs, use events.
 
     div(v-transfer-dom)
-      mdl-dialog(v-ref:info-message title='Hi there')
+      mdl-dialog(ref="info-message" title='Hi there')
         p Hello. This is an information message. You can click outside or in the close button to close it.
     .flex.center.wrap
       mdl-button(fab, primary, v-on:click='$refs.infoMessage.open')
@@ -24,7 +24,7 @@
         this.$refs.infoMessage.open()
 
     p Sometimes the modal need to be appended to the dom. In order to do that you
-      | you'll need the 
+      | you'll need the
       a(href='https://github.com/rhyzx/vue-transfer-dom')
         code vue-transfer-dom
         |  directive
@@ -65,7 +65,7 @@
       |  slot:
 
     div(v-transfer-dom)
-      mdl-dialog(v-ref:multiple full-width title='Hi there')
+      mdl-dialog(ref="multiple" full-width title='Hi there')
         p Hello.
         p Number is {{ number }}
         p Increase the number or decrease without closing this modal
@@ -81,11 +81,11 @@
         p= '<mdl-dialog v-ref:multiple full-width title="Hi there">'
         p= '  <p>Hello</p>'
         p= '  <template slot="actions">'
-        p= '    <mdl-button primary @click="number++">Increase</mdl-button>'
+        p= '    <mdl-button primary       @click="number++">Increase</mdl-button>'
         p= '    <mdl-button primary @click="number--">Decrease</mdl-button>'
         p= '    <mdl-button @click="$refs.multiple.close">Close</mdl-button>'
-        p= '  </template>'
-        p= '</mdl-dialog>'
+        p= '  &gt/template>'
+        p= '&gt/mdl-dialog>'
 
     h5 Prop List
     table.mdl-data-table.mdl-js-data-table
@@ -103,7 +103,7 @@
         tr
           td.mdl-data-table__cell--non-numeric
             code  full-width
-          td.mdl-data-table__cell--non-numeric Make buttons full width by applying the 
+          td.mdl-data-table__cell--non-numeric Make buttons full width by applying the
             code  mdl-dialog__actions--full-width
             |  modifier
           td.mdl-data-table__cell--non-numeric This prop doesn't need a value

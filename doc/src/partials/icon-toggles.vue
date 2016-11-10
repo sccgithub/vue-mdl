@@ -6,9 +6,9 @@
   title-link Icon Toggles
   .section__content
     p The icon-toggle component works the same way as the
-      a(v-link.literal='/checkboxes')  checkbox component
+      router-link(to='/checkboxes')  checkbox component
       |. It also supports the
-      a(v-link.literal='/ripple-effect')  ripple effect
+      router-link(to='/ripple-effect')  ripple effect
     .flex.start.wrap
       mdl-icon-toggle(:checked.sync='bold', icon='format_bold')
       mdl-icon-toggle.mdl-js-ripple-effect(:checked.sync='italic', icon='format_italic')
@@ -19,14 +19,14 @@
         p= '<mdl-icon-toggle :checked.sync="checked" icon="format_italic" class="mdl-js-ripple-effect"></mdl-icon-toggle>'
         p= '<mdl-icon-toggle :checked.sync="checked" icon="format_underlined" disabled></mdl-icon-toggle>'
 
-    p You can pass an 
+    p You can pass an
       code id
       |  to the component to access through the form element
     pre
       code.html
         p= '<mdl-icon-toggle id="Subscribe" :checked.sync="subscribe">Subscribe</mdl-icon-toggle>'
 
-    p Instead of using multiple booleans for a group of checkboxes, you can directly pass the same array to multiple checkboxes. If you do this you also need to specify the 
+    p Instead of using multiple booleans for a group of checkboxes, you can directly pass the same array to multiple checkboxes. If you do this you also need to specify the
      code value
      |  prop
 
@@ -59,7 +59,7 @@
         tr
           td.mdl-data-table__cell--non-numeric
             code disabled
-          td.mdl-data-table__cell--non-numeric Disables the checkbox. Adds the 
+          td.mdl-data-table__cell--non-numeric Disables the checkbox. Adds the
             code is-disabled
             |  class to the button
           td.mdl-data-table__cell--non-numeric
@@ -76,7 +76,7 @@
         tr
           td.mdl-data-table__cell--non-numeric
             code value
-          td.mdl-data-table__cell--non-numeric Defines the value of the toggle. Useful when passing an array to the 
+          td.mdl-data-table__cell--non-numeric Defines the value of the toggle. Useful when passing an array to the
             code checked
             |  prop
           td.mdl-data-table__cell--non-numeric

@@ -14,15 +14,15 @@ const dataBadgeSetter = function (hide, value) {
 }
 
 export default {
-  bind () {
-    this.el.classList.add('mdl-badge')
-    if ('overlap' in this.modifiers) {
-      this.el.classList.add('mdl-badge--overlap')
+  bind (el, binding) {
+    el.classList.add('mdl-badge')
+    if ('overlap' in binding.modifiers) {
+      el.classList.add('mdl-badge--overlap')
     }
-    if ('no-background' in this.modifiers) {
-      this.el.classList.add('mdl-badge--no-background')
+    if ('no-background' in binding.modifiers) {
+      el.classList.add('mdl-badge--no-background')
     }
-    this.isNumber = 'number' in this.modifiers
+    // this.isNumber = 'number' in binding.modifiers
   },
   params: ['hide-badge'],
   paramWatchers: {
@@ -35,4 +35,3 @@ export default {
     dataBadgeSetter.call(this, this.params.hideBadge, value)
   }
 }
-

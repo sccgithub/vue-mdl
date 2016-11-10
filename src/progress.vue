@@ -17,7 +17,7 @@ export default {
       fill: true
     }
   },
-  ready () {
+  mounted () {
     componentHandler.upgradeElement(this.$el, 'MaterialProgress')
 
     if (this.progress != null) {
