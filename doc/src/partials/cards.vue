@@ -41,8 +41,8 @@
     .flex.start.wrap
       mdl-card.reset-height.white-space(:title='cardTitle', :supporting-text='supportingText', actions, actions-text='View updates')
     .flex.start.wrap
-      mdl-textfield(:value.sync='cardTitle', floating-label='Card Title')
-      mdl-textfield(textarea, :value.sync='supportingText', floating-label='Supporting Text')
+      mdl-textfield(:value='cardTitle', floating-label='Card Title' @mdlchange="cardTitle=$event")
+      mdl-textfield(textarea, :value='supportingText', @mdlchange="supportingText=$event" floating-label='Supporting Text')
 
     p Pass the text you want to the directive:
     pre
@@ -71,17 +71,18 @@
         p= '<mdl-card class="demo-card-welcome" title="Welcome" :supporting-text="supportingText" actions="actions" actions-text="Get started">'
         p= '</mdl-card>'
 
-    p You can replace any of the existing content by using slots. Available slots are 
+    p You can respond to these two click events with a custom event with the same name as the menu action
+    p You can replace any of the existing content by using slots. Available slots are
       code title
-      | , 
+      | ,
       code subtitle
-      | , 
+      | ,
       code supporting-text
-      | , 
+      | ,
       code media
-      | , 
+      | ,
       code actions
-      |  and 
+      |  and
       code menu
 
     .flex.start.wrap

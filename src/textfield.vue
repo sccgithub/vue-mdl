@@ -5,11 +5,11 @@
       i.material-icons {{expandable}}
   div(v-bind:class='{"mdl-textfield__expandable-holder": expandable}')
     slot(v-if='textarea' name='textarea')
-      textarea.mdl-textfield__input(type='text' v-model='value' v-bind:required='required' v-bind:id.once='id' v-bind:rows='rows' v-bind:disabled='disabled' v-bind:readonly='readonly' v-bind:maxlength='maxlength')
+      textarea.mdl-textfield__input(type='text' v-model='result' v-bind:required='required' v-bind:id.once='id' v-bind:rows='rows' v-bind:disabled='disabled' v-bind:readonly='readonly' v-bind:maxlength='maxlength')
     slot(v-else name='input')
-      input.mdl-textfield__input(type='text' v-model='value' v-bind:id.once='id' v-bind:pattern='pattern' v-bind:disabled='disabled' v-bind:required='required' v-bind:readonly='readonly' v-bind:maxlength='maxlength')
-    slot(name='label')
-      label.mdl-textfield__label(v-bind:for.once='id') {{label}}
+      input.mdl-textfield__input(type='text' v-model='result' v-bind:id.once='id' v-bind:pattern='pattern' v-bind:disabled='disabled' v-bind:required='required' v-bind:readonly='readonly' v-bind:maxlength='maxlength')
+    slot(name='Label')
+      label.mdl-textfield__label(v-bind:for.once='id') {{Label}}
     slot(name='error')
       label.mdl-textfield__error(v-if='error') {{error}}
 </template>
@@ -18,6 +18,11 @@
 import propFill from './mixins/prop-fill'
 
 export default {
+  data () {
+    return {
+      result: ''
+    }
+  },
   props: {
     maxlength: {
       required: false
@@ -62,17 +67,31 @@ export default {
       required: false
     }
   },
-  computed: {
-    isDirty () {
-      return '' + this.value
+  watch: {
+    result () {
+      this.$emit('mdlchange', this.result)
+    },
+    value () {
+      this.result = this.value
     }
   },
-  ready () {
-    componentHandler.upgradeElement(this.$el)
-    if (this.floatingLabel && this.label == null) {
-      this.label = this.floatingLabel
-      this.$watch('floatingLabel', (val) => this.label = val)
+  computed: {
+    Label () {
+      if (this.floatingLabel && this.label == null) {
+        return this.floatingLabel
+      } else {
+        return this.label
+      }
+    },
+    isDirty () {
+      return this.result
     }
+  },
+  mounted () {
+    if (window.componentHandler) {
+      window.componentHandler.upgradeElement(this.$el)
+    }
+    this.result = this.value
   },
   mixins: [propFill]
 }

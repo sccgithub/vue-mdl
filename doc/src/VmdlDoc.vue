@@ -125,8 +125,8 @@ export default {
         name: 'Components',
         icon: 'extension',
         items: [
-          'Buttons',
-          'Cards',
+          'Buttons*',
+          'Cards^',
           'Checkboxes',
           'Icon Toggles',
           'Menus',
@@ -136,8 +136,8 @@ export default {
           'Snackbars',
           'Spinners',
           'Switches',
-          'Tabs',
-          'Textfields',
+          'Tabs^',
+          'Textfields^',
           'Tooltips'
         ]
       }, {

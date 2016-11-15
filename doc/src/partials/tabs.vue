@@ -9,7 +9,7 @@
 
       <div class="flex center wrap">
         <p>Selected tab: {{selected}}</p>
-        <mdl-tabs :selected.sync="selected">
+        <mdl-tabs :selected="selected" @mdlchange="selected=$event">
           <mdl-tab tab="Tab 1">
             <p>Content of Tab 1</p>
           </mdl-tab>
@@ -24,7 +24,7 @@
 
       <pre>
         <code class="html">
-&lt;mdl-tabs :selected.sync=&quot;selected&quot;&gt;
+&lt;mdl-tabs :selected=&quot;selected&quot; @mdlchange=&quot;selectedCustom=$event&quot;&gt;
   &lt;mdl-tab tab=&quot;Tab 1&quot;&gt;
     &lt;p&gt;Content of Tab 1&lt;/p&gt;
   &lt;/mdl-tab&gt;
@@ -44,7 +44,7 @@
 
       <div class="flex center wrap">
         <p>Selected tab: {{selectedCustom}}</p>
-        <mdl-tabs :selected.sync="selectedCustom">
+        <mdl-tabs :selected="selectedCustom" @mdlchange="selectedCustom=$event">
           <mdl-tab :tab="{ title: 'Title', id: 'tab-1' }">
             <p>Content of first Tab</p>
           </mdl-tab>
@@ -59,7 +59,7 @@
 
       <pre>
         <code class="html">
-&lt;mdl-tabs :selected.sync=&quot;selected&quot;&gt;
+&lt;mdl-tabs :selected=&quot;selected&quot; @mdlchange=&quot;selectedCustom=$event&quot;&gt;
   &lt;mdl-tab :tab=&quot;{ title: 'Title', id: 'tab-1' }&quot;&gt;
     &lt;p&gt;Content of first Tab&lt;/p&gt;
   &lt;/mdl-tab&gt;
@@ -72,7 +72,9 @@
 &lt;/mdl-tabs&gt;
         </code>
       </pre>
-
+      <p class="flex center wrap">
+        Selected can only one-way binding data, in order to dynamically access the selected tab can use custom events, like the above example
+      </p>
 
       <h5>Prop List for <code>mdl-tabs</code></h5>
       <table class="mdl-data-table mdl-js-data-table">

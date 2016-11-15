@@ -8,9 +8,9 @@
     p The checkbox supports the
       router-link(to='/ripple-effect')  ripple effect
     .flex.start.wrap
-      mdl-checkbox(:checked='checked') Checkbox
-      mdl-checkbox(:checked='checked' mdl-js-ripple-effect) Ripple Effect
-      mdl-checkbox(:checked='checked', disabled) Disabled
+      mdl-checkbox(:checked='checked' @mdlchange="checked=$event") Checkbox
+      mdl-checkbox(:checked='checked' mdl-js-ripple-effect @mdlchange="checked=$event") Ripple Effect
+      mdl-checkbox(:checked='checked', disabled @mdlchange="checked=$event") Disabled
     pre
       code.html
         p= '<mdl-checkbox :checked.sync="checked">Checkbox</mdl-checkbox>'

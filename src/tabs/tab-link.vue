@@ -1,25 +1,22 @@
 <template>
-  <a class="mdl-tabs__tab"
-     href="#"
-  >{{tab.title}}
-    <span v-el:ripple
-          v-show="!noRippleEffect"
-          class="mdl-tabs__ripple-container mdl-js-ripple-effect">
-      <span class="mdl-ripple"></span>
-    </span>
-  </a>
+  <span ref="ripple"
+        v-show="!noRippleEffect"
+        class="mdl-tabs__ripple-container mdl-js-ripple-effect">
+    <span class="mdl-ripple"></span>
+  </span>
 </template>
 
 <script>
 export default {
   props: {
-    tab: Object,
     noRippleEffect: {
       required: false
     }
   },
-  ready () {
-    componentHandler.upgradeElement(this.$els.ripple, 'MaterialRipple')
+  mounted () {
+    if (window.componentHandler) {
+      componentHandler.upgradeElement(this.$refs.ripple, 'MaterialRipple')
+    }
   }
 }
 </script>

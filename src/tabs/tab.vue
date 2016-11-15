@@ -1,6 +1,6 @@
 <template>
   <div class="mdl-tabs__panel"
-       :class="{'is-active': selected }"
+       :class="{'is-active': selectedSelf }"
   >
     <slot></slot>
   </div>
@@ -15,7 +15,7 @@ function tabToOject (tab) {
 
 export default {
   computed: {
-    selected () {
+    selectedSelf () {
       return this.$parent.isSelected(this.tabData)
     },
     id () {
@@ -38,7 +38,7 @@ export default {
       this.$parent.updateTab(tabToOject(oldTab), this.tabData)
     }
   },
-  ready () {
+  mounted () {
     this.$parent.addTab(this.tabData)
   },
   beforeDestroy () {

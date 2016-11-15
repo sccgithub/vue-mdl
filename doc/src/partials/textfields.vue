@@ -9,33 +9,29 @@
   title-link Textfields
   .section__content
     p The textfield component is highly customizable and allows you to use text inputs and textareas.
-      | Instead of using the 
-      code v-model
-      |  directive you have to pass a two way prop named 
-      code value
-      | .
+      | You can only to pass a one way prop named value.
     .flex.center.wrap
       p Hello {{name}}
     .flex.start.wrap
-      mdl-textfield.space(label='Name', :value.sync='name')
-      mdl-textfield.space(floating-label='Name', :value.sync='name')
+      mdl-textfield.space(label='Name', :value='name' @mdlchange="name = $event")
+      mdl-textfield.space(floating-label='Name', :value='name' @mdlchange="name = $event")
     pre
       code.html
-        p= '<mdl-textfield label="Name" :value.sync="name"></mdl-textfield>'
-        p= '<mdl-textfield floating-label="Name" :value.sync="name"></mdl-textfield>'
-
-    p Use the 
+        p= '<mdl-textfield label="Name" :value="name" @mdlchange="name = $event"></mdl-textfield>'
+        p= '<mdl-textfield floating-label="Name" :value="name" @mdlchange="name = $event"></mdl-textfield>'
+    p Here you need to use custom events to receive data
+    p Use the
       code textarea
       |  prop to use a textarea instead of an input
     .flex.start.wrap
-      mdl-textfield(floating-label='Textarea', textarea, rows='4', :value.sync='text')
+      mdl-textfield(floating-label='Textarea', textarea, rows='4', :value='text' @mdlchange="text=$event")
       p {{text}}
     pre
-      code.html= '<mdl-textfield floating-label="Name" textarea rows="4"></mdl-textfield>'
+      code.html= '<mdl-textfield floating-label="Name" textarea rows="4" @mdlchange="test=$event"></mdl-textfield>'
 
-    p You can dynamically bind the 
+    p You can dynamically bind the
       code floating-label
-      |  prop and use the 
+      |  prop and use the
       code label
       | prop for the real label if you need to control whether the label can floats or not
 
@@ -47,17 +43,19 @@
           data: {floating: false}
         })
 
-    p You can make the textfield expandable by using the 
+    p You can make the textfield expandable by using the
       code expandable
-      |  prop and setting and 
+      |  prop and setting and
       code id
       |  on the element.
 
     .flex.start.wrap
-      mdl-textfield#demo-expandable-button(expandable='search')
+      mdl-textfield#demo-expandable-button(expandable='search' @mdlchange="search=$event")
+    .flex.start.wrap
+      p search: {{search}}
 
     pre
-      code.html= '<mdl-textfield id="demo-expandable-button" expandable="search"></mdl-textfield>'
+      code.html= '<mdl-textfield id="demo-expandable-button" expandable="search" @mdlchange="search=$event"></mdl-textfield>'
 
     // h5 Playground
     // .flex.start.wrap
@@ -66,7 +64,7 @@
     //   mdl-checkbox.reset-width.space(:checked.sync='float') Floating label
     //   mdl-checkbox.reset-width.space(:checked.sync='textarea') Textarea
     // .flex.start.wrap
-    //   p Rows: 
+    //   p Rows:
     //   mdl-slider.reset-width.space(:value.sync='rows', min='1', max='20')
     // .flex.start.wrap
     //   mdl-textfield.space(:value.sync='label', floating-label='Label')
@@ -86,19 +84,17 @@
           td.mdl-data-table__cell--non-numeric
             code value
           td.mdl-data-table__cell--non-numeric Defines a value for the textfield
-          td.mdl-data-table__cell--non-numeric Should be used with the 
-            code .sync
-            |  modifier
+          td.mdl-data-table__cell--non-numeric One way data binding
         tr
           td.mdl-data-table__cell--non-numeric
             code label
           td.mdl-data-table__cell--non-numeric Defines the label used on the the textfield
-          td.mdl-data-table__cell--non-numeric You don't need this if you use 
+          td.mdl-data-table__cell--non-numeric You don't need this if you use
             code floating-label
         tr
           td.mdl-data-table__cell--non-numeric
             code floating-label
-          td.mdl-data-table__cell--non-numeric Defines whether the label should float or not. If the given value is a String, you don't need to provide a 
+          td.mdl-data-table__cell--non-numeric Defines whether the label should float or not. If the given value is a String, you don't need to provide a
             code label
             |  prop
           td.mdl-data-table__cell--non-numeric
@@ -111,9 +107,7 @@
           td.mdl-data-table__cell--non-numeric
             code rows
           td.mdl-data-table__cell--non-numeric Controls the number of rows used in the textarea
-          td.mdl-data-table__cell--non-numeric Needs the 
-            code textarea
-            |  prop
+          td.mdl-data-table__cell--non-numeric Needs the textarea prop
         tr
           td.mdl-data-table__cell--non-numeric
             code pattern
@@ -123,9 +117,7 @@
           td.mdl-data-table__cell--non-numeric
             code error
           td.mdl-data-table__cell--non-numeric Defines the error displayed when the input text doesn't match the given pattern
-          td.mdl-data-table__cell--non-numeric Needs the 
-            code pattern
-            |  prop
+          td.mdl-data-table__cell--non-numeric Needs the pattern prop
         tr
           td.mdl-data-table__cell--non-numeric
             code expandable
@@ -163,6 +155,7 @@ export default {
       float: true,
       textarea: false,
       text: 'You can have\nmultiline',
+      search: '',
       rows: 3
     }
   },

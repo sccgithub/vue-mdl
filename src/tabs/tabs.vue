@@ -2,24 +2,29 @@
   <div class="mdl-tabs is-upgraded">
     <!-- Generated tab links -->
     <div class="mdl-tabs__tab-bar">
-      <tab-link
-          class="mdl-tabs__tab"
-          v-for="tab in tabs"
-          track-by="id"
-          :no-ripple-effect="noRippleEffect"
-          :class="{ 'is-active': isSelected(tab) }"
-          @click.prevent="selectTab(tab)"
-          :tab="tab"
-      ></tab-link>
+      <a class="mdl-tabs__tab"
+        v-for="tab in tabs"
+        track-by="id"
+        :class="{ 'is-active': isSelected(tab) }"
+        @click="selectTab(tab)"
+      >{{tab.title}}
+        <tabLink :noRippleEffect="noRippleEffect"></tabLink>
+      </a>
     </div>
     <!-- Tabs content -->
     <slot></slot>
   </div>
 </template>
 
+<style scoped>
+  a.mdl-tabs__tab {
+    cursor: pointer;
+  }
+</style>
+
 <script>
 import propFill from '../mixins/prop-fill'
-import TabLink from './tab-link.vue'
+import tabLink from './tab-link.vue'
 
 // indexOf with object
 function findTabIndex (tabs, id) {
@@ -44,15 +49,17 @@ export default {
   },
   data () {
     return {
-      tabs: []
+      tabs: [],
+      selectedSelf: ''
     }
   },
   methods: {
     selectTab ({id}) {
-      this.selected = id
+      this.selectedSelf = id
+      this.$emit('mdlchange', this.selectedSelf)
     },
     isSelected ({id}) {
-      return id === this.selected
+      return id === this.selectedSelf
     },
     addTab (tab) {
       // TODO check for duplicates and throw error
@@ -67,7 +74,17 @@ export default {
       if (index > -1) this.tabs.splice(index, 1)
     }
   },
+  watch: {
+    selected () {
+      this.selectedSelf = this.selected
+    }
+  },
+  mounted () {
+    this.selectedSelf = this.selected
+  },
   mixins: [propFill],
-  components: {TabLink}
+  components: {
+    tabLink
+  }
 }
 </script>
