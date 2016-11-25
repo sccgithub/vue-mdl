@@ -129,12 +129,12 @@ export default {
           'Cards^',
           'Checkboxes',
           'Icon Toggles',
-          'Menus',
+          'Menus^',
           'Progress bars',
           'Radio Buttons',
-          'Sliders',
+          'Sliders^',
           'Snackbars',
-          'Spinners',
+          'Spinners^',
           'Switches',
           'Tabs^',
           'Textfields^',
@@ -144,7 +144,7 @@ export default {
         name: 'Custom Components',
         icon: 'extension',
         items: [
-          'Selects',
+          'Selects^',
           'Dialogs'
         ]
       },

@@ -23,7 +23,9 @@ export default {
   },
   mounted () {
     this.forMsg = this.for
-    componentHandler.upgradeElement(this.$el, 'MaterialTooltip')
+    if (componentHandler) {
+      componentHandler.upgradeElement(this.$el, 'MaterialTooltip')
+    }
   },
   mixins: [propFill]
 }

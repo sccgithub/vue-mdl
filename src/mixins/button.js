@@ -41,7 +41,9 @@ export default {
     }
   },
   mixins: [propFill],
-  ready () {
-    componentHandler.upgradeElement(this.$el)
+  mounted () {
+    if (window.componentHandler) {
+      componentHandler.upgradeElement(this.$el)
+    }
   }
 }

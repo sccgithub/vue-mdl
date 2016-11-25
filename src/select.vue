@@ -23,7 +23,7 @@
   label(v-bind:for.once='id')
     i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
   label.mdl-textfield__label(v-bind:for.once='id') {{label}}
-  ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(v-bind:for.once='id')
+  ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(v-bind:for.once='id' ref="menu")
     li.mdl-menu__item(v-for='option in optionsObject', v-on:click='selectValue(option)') {{option.name}}
 </template>
 
@@ -36,10 +36,15 @@ export default {
   },
   methods: {
     selectValue (option) {
-      this.value = option.value
-      this.name = option.name
-      let event = new Event('change')
-      this.$el.dispatchEvent(event)
+      option.value ? this.name = option.value : this.name = option.name
+      if (this.$refs.menu.MaterialMenu) {
+        this.$refs.menu.MaterialMenu.hide()
+      }
+      if (!this.value) {
+        this.$refs.textfield.MaterialTextfield.boundBlurHandler()
+        this.$refs.textfield.MaterialTextfield.change(this.name)
+      }
+      this.$emit('mdlchange', this.name)
     },
     setName () {
       this.name = null
@@ -48,8 +53,8 @@ export default {
         if (this.value === option.value) this.name = option.name
       }
       if (!this.name) this.name = this.value
-      this.$els.textfield.MaterialTextfield.change(this.name)
-      this.$els.textfield.MaterialTextfield.boundBlurHandler()
+      this.$refs.textfield.MaterialTextfield.change(this.name)
+      this.$refs.textfield.MaterialTextfield.boundBlurHandler()
     }
   },
   computed: {
@@ -83,7 +88,9 @@ export default {
     }
   },
   mounted () {
-    componentHandler.upgradeElements(this.$el)
+    if (window.componentHandler) {
+      window.componentHandler.upgradeElements(this.$el)
+    }
     this.setName()
   },
   watch: {

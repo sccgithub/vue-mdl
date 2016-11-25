@@ -1,5 +1,5 @@
 <template lang="jade">
-ul.mdl-menu.mdl-js-menu(v-bind:for.once='forMsg')
+ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect(v-bind:data-mdl-for='forMsg')
   slot
 </template>
 
@@ -13,7 +13,13 @@ export default {
   props: ['for'],
   mounted () {
     this.forMsg = this.for
-    componentHandler.upgradeElement(this.$el, 'MaterialMenu')
+    if (window.componentHandler) {
+      componentHandler.upgradeElement(this.$el, 'MaterialMenu')
+      let that = this
+      document.querySelector('#' + this.for).addEventListener('click', function () {
+        that.$el.MaterialMenu.toggle()
+      }, false)
+    }
   }
   // beforeDestroy () {
     // TODO Remove mdl event listeners added. This was previously

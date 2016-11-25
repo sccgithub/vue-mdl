@@ -1,6 +1,3 @@
-<style lang="stylus">
-</style>
-
 <template lang="jade">
 .section
   title-link Sliders
@@ -8,25 +5,26 @@
     p Sliders allows you to display a fancier
       code= ' <input type="range">'
     .flex.start.wrap
-      mdl-textfield(:value.sync='amount', floating-label, label='Amount')
+      mdl-textfield(:value='amount', @mdlchange="amount=$event" floating-label, label='Amount')
     .flex.center.wrap
-      mdl-slider(:value.sync='amount', min='0', max='100')
-      mdl-slider(:value.sync='amount', min='0', max='100', disabled)
+      mdl-slider(:value='amount', min='0', max='100', @mdlchange="amount=$event")
+      mdl-slider(:value='amount', min='0', max='100', @mdlchange="amount=$event", disabled)
     pre
       code.html
-        p= '<mdl-slider :value.sync="amount" min="0" max="100"></mdl-slider>'
-        p= '<mdl-slider :value.sync="amount" min="0" max="100" disabled></mdl-slider>'
+        p= '<mdl-slider :value="amount" min="0" max="100" @mdlchange="amount=$event"></mdl-slider>'
+        p= '<mdl-slider :value="amount" min="0" max="100" @mdlchange="amount=$event" disabled></mdl-slider>'
 
     p You can set the step to limit the available values
     .flex.start.wrap
-      mdl-textfield(:value.sync='amountStep', floating-label, label='Amount')
-      mdl-textfield(:value.sync='step', floating-label, label='Step')
+      mdl-textfield(:value='amountStep', @mdlchange="amountStep=$event", floating-label, label='Amount')
+      mdl-textfield(:value='step', @mdlchange="step=$event", floating-label, label='Step')
     .flex.center.wrap
-      mdl-slider(:value.sync='amountStep', :step='step' min='0', max='100')
+      mdl-slider(:value='amountStep', :step='step' min='0', max='100', @mdlchange="amountStep=$event")
+      mdl-slider(:value='amountStep', :step='step' min='0', max='100', @mdlchange="amountStep=$event" disabled)
     pre
       code.html
-        p= '<mdl-slider :value.sync="amount" min="0" max="100"></mdl-slider>'
-        p= '<mdl-slider :value.sync="amount" min="0" max="100" disabled></mdl-slider>'
+        p= '<mdl-slider :value="amount" min="0" max="100" @mdlchange="amount=$event"></mdl-slider>'
+        p= '<mdl-slider :value="amount" min="0" max="100" @mdlchange="amount=$event" disabled></mdl-slider>'
 
     p When changing those props externally (by not using the slider), the slider will be visually updated to match the new value. However min, max and step constraints will not be applied.
 

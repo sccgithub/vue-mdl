@@ -13,6 +13,12 @@
       mdl-tooltip(for='add-button') Add something!
       mdl-button#add-button(fab, primary)
         i.material-icons add
+    #tt4.flex.center.wrap.icon.material-icons share
+    .mdl-tooltip(for='tt4')
+      | Share your content
+      br
+      | via social media
+
     pre
       code.html
         p= '<mdl-tooltip for="add-button">Add something!</mdl-tooltip>'

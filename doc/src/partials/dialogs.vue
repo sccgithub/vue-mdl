@@ -1,17 +1,14 @@
-<style lang="stylus">
-</style>
-
 <template lang="jade">
 .section
   title-link Dialogs
   .section__content
     p The dialog component allows for verification of user actions, simple data input, and alerts to provide extra information to users. To display dialogs, use events.
 
-    div(v-transfer-dom)
-      mdl-dialog(ref="info-message" title='Hi there')
+    div()
+      mdl-dialog(title='Hi there', ref="info-message")
         p Hello. This is an information message. You can click outside or in the close button to close it.
     .flex.center.wrap
-      mdl-button(fab, primary, v-on:click='$refs.infoMessage.open')
+      mdl-button(fab, primary, v-on:click='test()')
         i.material-icons power_settings_new
     pre
       code.html
@@ -64,17 +61,17 @@
       code actions
       |  slot:
 
-    div(v-transfer-dom)
-      mdl-dialog(ref="multiple" full-width title='Hi there')
+    div
+      mdl-dialog(ref="multiple", full-width title='Hi there')
         p Hello.
         p Number is {{ number }}
         p Increase the number or decrease without closing this modal
         template(slot="actions")
           mdl-button(primary, v-on:click='number++') Increase
           mdl-button(primary, v-on:click='number--') Decrease
-          mdl-button(v-on:click='$refs.multiple.close') Close
+          mdl-button(v-on:click='$refs.multiple') Close
     .flex.center.wrap
-      mdl-button(fab, primary, v-on:click='$refs.multiple.open')
+      mdl-button(fab, primary, v-on:click='$refs.multiple')
         i.material-icons power_settings_new
     pre
       code.html
@@ -117,6 +114,14 @@ export default {
     return {
       number: 0
     }
+  },
+  methods: {
+    test () {
+      console.log('----------')
+    }
+  },
+  mounted () {
+    console.log(this.$refs)
   }
 }
 </script>

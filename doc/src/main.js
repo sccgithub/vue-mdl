@@ -25,6 +25,7 @@ Vue.mixin({
   mounted () {
     hljs.initHighlighting.called = false
     hljs.initHighlighting()
+    window.componentHandler.upgradeDom()
     document.querySelector('main').scrollTop = 0
   }
 })

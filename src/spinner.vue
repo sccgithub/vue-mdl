@@ -12,11 +12,14 @@ export default {
       type: Boolean
     },
     singleColor: {
+      default: false,
       fill: true
     }
   },
-  ready () {
-    componentHandler.upgradeElement(this.$el, 'MaterialSpinner')
+  mounted () {
+    if (window.componentHandler) {
+      componentHandler.upgradeElement(this.$el, 'MaterialSpinner')
+    }
   },
   mixins: [propFill]
 }

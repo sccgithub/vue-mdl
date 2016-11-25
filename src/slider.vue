@@ -1,7 +1,7 @@
 <template lang="jade">
 input.mdl-slider.mdl-js-slider(
   type='range'
-  v-model='value'
+  v-model='valueSelf'
   v-bind:min='min'
   v-bind:max='max'
   v-bind:step='step'
@@ -13,10 +13,14 @@ input.mdl-slider.mdl-js-slider(
 import propFill from './mixins/prop-fill'
 
 export default {
+  data () {
+    return {
+      valueSelf: ''
+    }
+  },
   props: {
     value: {
-      required: true,
-      twoWay: true
+      required: true
     },
     step: {
       required: false
@@ -31,11 +35,21 @@ export default {
       fill: true
     }
   },
-  ready () {
-    componentHandler.upgradeElement(this.$el, 'MaterialSlider')
+  watch: {
+    valueSelf () {
+      this.$emit('mdlchange', this.valueSelf)
+    }
+  },
+  mounted () {
+    if (window.componentHandler) {
+      componentHandler.upgradeElement(this.$el, 'MaterialSlider')
+      this.$el.MaterialSlider.change(this.value)
+    }
 
-    this.$el.MaterialSlider.change(this.value)
-    this.$watch('value', val => this.$el.MaterialSlider.change(val))
+    this.$watch('value', val => {
+      this.$el.MaterialSlider.change(val)
+      this.valueSelf = val
+    })
 
     // The original value is not changed, only design is changed
     this.$watch('min', val => {

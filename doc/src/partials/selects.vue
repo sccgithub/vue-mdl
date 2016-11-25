@@ -12,12 +12,12 @@
       |  html element.
 
     .flex.center.wrap
-      mdl-select#country-select(label='Country', :value.sync='country', :options='countriesArray')
+      mdl-select#country-select(label='Country', :value='country', :options='countriesArray' @mdlchange="country=$event")
     .flex.center.wrap
       p Selected country is {{country}}
     pre
       code.html
-        p= '<mdl-select label="Country" id="contry-select" :value.sync="country" :options="countriesArray"></mdl-select>'
+        p= '<mdl-select label="Country" id="contry-select" :value="country" :options="countriesArray" @mdlchange="country=$event"></mdl-select>'
       code.javascript.
         new Vue({
           data: {
@@ -34,12 +34,12 @@
       |  properties.
 
     .flex.center.wrap
-      mdl-select#country-select-2(label='Country', :value.sync='countryVal', :options='countries')
+      mdl-select#country-select-2(label='Country', :value='countryVal', :options='countries' @mdlchange="countryVal=$event")
     .flex.center.wrap
       p Selected country is {{countryVal}}
     pre
       code.html
-        p= '<mdl-select label="Country" id="contry-select" :value.sync="country" :options="countries"></mdl-select>'
+        p= '<mdl-select label="Country" id="contry-select" :value="country" :options="countries" @mdlchange="countryVal=$event"></mdl-select>'
       code.javascript.
         new Vue({
           data: {
@@ -65,6 +65,7 @@
           }
         })
 
+    p.fles.start.wrap Value can only one-way binding data, in order to dynamically get to be selected option can use custom events, like the above example
     p MDL need an&nbsp;
       code id
       |  to handle the menu toggling.
